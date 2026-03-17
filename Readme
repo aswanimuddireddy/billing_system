@@ -1,0 +1,28 @@
+# Billing System (FastAPI)
+
+## Setup
+
+1. Create virtual environment  
+   `python -m venv venv`  
+   `source venv/bin/activate`  (Linux/Mac) or `venv\Scripts\activate` (Windows)
+
+2. Install dependencies  
+   `pip install -r requirements.txt`
+
+3. Create `.env` file with email credentials
+EMAIL_USER=your@gmail.com
+EMAIL_PASS=your-app-password
+text4. Seed products (optional, run once)  
+`python seed_data.py`
+
+5. Run the app  
+`uvicorn app.main:app --reload`
+
+Open: http://127.0.0.1:8000/
+
+Assumptions:
+- Using SQLite (allowed in task)
+- Product ID = auto-increment integer
+- Change calculated in whole rupees only (paise ignored for simplicity)
+- No fancy CSS, basic Bootstrap
+- Email uses Gmail SMTP (use app password)

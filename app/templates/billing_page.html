@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supermarket Billing System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f6f9;
+        }
+
+        .header {
+            background: #198754;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card {
+            border-radius: 12px;
+        }
+
+        .btn-success {
+            width: 150px;
+        }
+
+        .btn-danger {
+            width: 100px;
+        }
+
+        input {
+            border-radius: 6px !important;
+        }
+    </style>
+
+    <script>
+    function addRow() {
+        let container = document.getElementById("items");
+
+        let row = document.createElement("div");
+        row.className = "row mb-2";
+
+        row.innerHTML = `
+            <div class="col-md-6">
+                <input type="number" name="product_ids" placeholder="Product ID" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <input type="number" name="quantities" placeholder="Quantity" class="form-control" required>
+            </div>
+        `;
+
+        container.appendChild(row);
+    }
+    </script>
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <!-- HEADER -->
+   <div class="header mb-4 position-relative text-center">
+
+    🧾Billing System
+
+    <a href="/history" 
+       class="btn btn-light btn-sm position-absolute top-50 end-0 translate-middle-y me-3 fw-bold">
+        📜 History
+    </a>
+
+</div>
+
+    <div class="card shadow p-4">
+
+        <form action="/generate-bill" method="post">
+
+            <!-- EMAIL -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Customer Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter customer email" required>
+            </div>
+
+            <!-- PRODUCTS -->
+            <div class="mb-4">
+                <div class="section-title">🛒 Products</div>
+
+                <div id="items">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <input type="number" name="product_ids" placeholder="Product ID" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="number" name="quantities" placeholder="Quantity" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" onclick="addRow()" class="btn btn-outline-secondary btn-sm mt-2">
+                    + Add More Products
+                </button>
+            </div>
+
+            <!-- DENOMINATIONS -->
+            <div class="mb-4">
+                <div class="section-title">💰 Cash Available (Denominations)</div>
+
+                <div class="row text-center">
+                    <div class="col-md-4 mb-2">₹500 <input type="number" name="d500" class="form-control" value="0"></div>
+                    <div class="col-md-4 mb-2">₹200 <input type="number" name="d200" class="form-control" value="0"></div>
+                    <div class="col-md-4 mb-2">₹100 <input type="number" name="d100" class="form-control" value="0"></div>
+
+                    <div class="col-md-4 mb-2">₹50 <input type="number" name="d50" class="form-control" value="0"></div>
+                    <div class="col-md-4 mb-2">₹20 <input type="number" name="d20" class="form-control" value="0"></div>
+                    <div class="col-md-4 mb-2">₹10 <input type="number" name="d10" class="form-control" value="0"></div>
+
+                    <div class="col-md-4 mb-2">₹5 <input type="number" name="d5" class="form-control" value="0"></div>
+                    <div class="col-md-4 mb-2">₹2 <input type="number" name="d2" class="form-control" value="0"></div>
+                    <div class="col-md-4 mb-2">₹1 <input type="number" name="d1" class="form-control" value="0"></div>
+                </div>
+            </div>
+
+            <!-- PAYMENT -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">💵 Cash Paid</label>
+                <input type="number" name="paid" class="form-control" placeholder="Enter amount paid" required>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="d-flex justify-content-between align-items-center">
+
+                <button type="reset" class="btn btn-danger">
+                    Cancel
+                </button>
+
+                <button type="submit" class="btn btn-success">
+                    Generate Bill
+                </button>
+
+            </div>
+
+            
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
